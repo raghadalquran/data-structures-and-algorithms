@@ -24,10 +24,13 @@ Write a function named isCapitalized that takes in a string. This function shoul
 
 Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
-
 const isCapitalized = (str) => {
-  let exp = /[A-Z]/;
-  return exp.match(str);};
+  let ergEx = /\b[A-Z].*?\b/g;
+  let cap = str.match(ergEx);
+  let hey = [];
+  return cap || hey;
+};
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -36,7 +39,7 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 const citiesAtoJ = (arr) => {
-  let exp = /[A-J]/;
+  let exp = /\b[A-J].*?\b/ig;
   return exp.test(arr);};
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,7 +55,8 @@ Do not use the vertical bar (pipe) in your pattern.
 ------------------------------------------------------------------------------------------------ */
 
 const matchMonth = (input) => {
-  // Solution code here...
+  let validator = /\boct/ig;
+  return validator.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -66,8 +70,8 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 ------------------------------------------------------------------------------------------------ */
 
 const noPunctuation = str => {
-  // Solution code here...
-};
+  let validator = /\w''$/ig;
+  return validator.test(str);};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
