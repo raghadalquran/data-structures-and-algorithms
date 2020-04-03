@@ -142,8 +142,13 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  let odd = arr.filter(n=> n%2);
-  return odd;
+  let arrLength = arr.length;
+  for(let i =0 ; i<arrLength;i++){
+    if(arr[i]%2 === 0){
+      arr.splice(i,1);
+      i--;
+    }
+  }
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
