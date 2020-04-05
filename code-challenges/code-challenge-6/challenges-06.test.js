@@ -72,9 +72,14 @@ let characters = [
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  arr.forEach(val => {
+    let house = Object.values(val);
+    console.log(house);
+    houses.push(house[3]);
+  });
   return houses;
 };
+
 
 /*------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -89,21 +94,53 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
-
+  let bol;
+  arr.forEach(val => {
+    let house = Object.values(val);
+    //console.log(house[2]);
+    if(house[0] == character){
+      if(house[2].length > 0){
+        bol = true;
+      } else {
+        bol = false ;
+      }
+    }
+  });
+  return bol;
 };
+
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 3, but uses the data's entries instead of its values.
+Write a function named hasChildrenEntries that is similar to your hasChildrenValues function from challenge 3,
+ but uses the data's entries instead of its values.
 
 The input and output of this function are the same as the input and output from challenge 3.
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  let bol;
+  arr.forEach(val => {
+    let house = Object.entries(val);
+    // [[k,v],[k,v],[k,[,,]]],[k,v]...]
+    let name = house[0][1] ;
+    if(name == character){
+      let lng = house[2][1].length;
+      console.log(lng);
+      if (lng > 0 ){
+        bol = true;
+      } else {
+        bol = false;
+      }
+    }
+
+  });
+  return bol;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -112,8 +149,21 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let counter = 0 ;
+  arr.forEach(val => {
+    let names = Object.values(val);
+    counter ++;
+    if(names[1] !== null){
+      counter ++;
+    }
+    let ln = names[2].length;
+    if(ln > 0 ){
+      counter = counter + ln;
+    }
+  });
+  return counter ;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 - Stretch Goal
