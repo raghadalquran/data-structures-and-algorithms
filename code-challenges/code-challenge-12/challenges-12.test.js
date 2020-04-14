@@ -4,7 +4,7 @@ CHALLENGE 1
 You friend Pat has a chain of stores around the greater Seattle area. He specializes in selling salmon cookies
 . Pat has data for the hourly sales of cookies per hour for each store.
  He wants to create an array of the total number of cookies sold per hour for all of his stores combined.
-Write a function named grandTotal that adds up the cookies sales for each hour of operation for all 
+Write a function named grandTotal that adds up the cookies sales for each hour of operation for all
 of the stores combined. For example, the first element in the hourlySales array should be the sum of the cookies
  sold in the 9:00 a.m. hour at all five stores combined.
 For this example, the total at 9:00 a.m. is 17 + 26 + 7 + 5 + 33, or 88 total cookies.
@@ -18,17 +18,17 @@ const capHill = [5, 85, 58, 51, 50, 13, 33, 32, 47, 94, 31, 62];
 const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 const grandTotal = (stores) => {
-    
-    let sumArray=[];
-    let i =0;
-    for( i=0 ;i<hoursOpen.length;i++){
-        let sum = 0;
-      for(let j=0 ; j<stores.length;j++){
-        sum += stores[j][i]
-      }
-      sumArray.push(sum);
+
+  let sumArray=[];
+  let i =0;
+  for( i=0 ;i<hoursOpen.length;i++){
+    let sum = 0;
+    for(let j=0 ; j<stores.length;j++){
+      sum += stores[j][i]
     }
-    return sumArray;
+    sumArray.push(sum);
+  }
+  return sumArray;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -39,15 +39,15 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
  array and create an object for each hour. Return an array of the formatted data.
 ------------------------------------------------------------------------------------------------ */
 const salesData = (hours, data) => {
-    let result=[];
-    data.forEach((val,i) => {
-      //88
-      let obj = { sales: `${val} cookies`, time: `${hours[i]}`}
-      result.push(obj);
-    });
-    return result;
-  };
-  
+  let result=[];
+  data.forEach((val,i) => {
+    //88
+    let obj = { sales: `${val} cookies`, time: `${hours[i]}`}
+    result.push(obj);
+  });
+  return result;
+};
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 Write a function named howManyTreats that will return the quantity of treats you need to pick up from the pet store
@@ -65,17 +65,17 @@ const errands = [
   }
 ];
 const howManyTreats = (arr) => {
-    let quant;
+  let quant;
   arr.forEach(element => {
-      if (element.store === 'Pet store'){
-        element.items.forEach(val => {
-            if(val.name === 'Treats'){
-                quant = val.quantity;
-            }
-        });
-      }
-    });
-    return quant;
+    if (element.store === 'Pet store'){
+      element.items.forEach(val => {
+        if(val.name === 'Treats'){
+          quant = val.quantity;
+        }
+      });
+    }
+  });
+  return quant;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -92,7 +92,16 @@ Here is a sample board:
 The top row of the board is considered row zero and row numbers increase as they go down.
 ------------------------------------------------------------------------------------------------ */
 const battleship = (board, row, col) => {
-  //  Solution code here...
+  for(let i =0; i<board.length;i++){
+    //[#,'',#,'']
+    for(let j=0 ;i<board[i].length;j++){
+      if(board[i][j] === board[row][col]){
+        return 'hit';
+      } else {
+        return 'miss';
+      }
+    }
+  }
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -100,7 +109,15 @@ Write a function named calculateProduct that takes in a two-dimensional array of
 For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  let mul=1;
+  numbers.forEach((val)=>{
+    //val []
+    val.forEach((value)=>{
+      //value
+      mul = mul*value;
+    })
+  })
+  return mul;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -115,7 +132,17 @@ const weeklyTemperatures = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  let sum=0;
+  let count =0 ;
+  let avg;
+  for(let i = 0 ; i<weather.length;i++){
+    for(let j = 0 ; j<weather[i].length;j++){
+      sum = sum + weather[i][j];
+      count = count +1;
+      avg = sum/count;
+    }
+  }
+  return avg;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -129,8 +156,25 @@ let lowestWeeklyTemperatureData = [
   [55, 54, 60, 53, 59, 57, 61],
   [65, 56, 55, 52, 55, 62, 57],
 ];
+
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  let sum = 0;
+  let count = 0;
+  let firstAvg =0;
+  let secAvg = 100;
+  for(let i=0 ; i<weather.length ; i++){
+    sum = 0 ;
+    count = 0;
+    weather[i].forEach(val =>{
+      sum = sum + val ;
+      count = count +1;
+      firstAvg = sum/count;
+    })
+    if(firstAvg < secAvg){
+      secAvg=firstAvg;
+    }
+  }
+  return secAvg;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8
@@ -140,7 +184,20 @@ The function should parse the string as rows and columns and compute the sum of 
 For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 const excel = (str) => {
-  // Solution code here...
+  let frstArr = str.split(`\n`);
+  let resultArr = [];
+  let sum = 0;
+  for (let i = 0; i < frstArr.length; i++) {
+    frstArr[i] = frstArr[i].split(',');
+  }
+  for (let i = 0; i < frstArr.length; i++){
+    for (let j = 0; j < frstArr[i].length; j++){
+      sum = sum + Number(frstArr[i][j]);
+    }
+    resultArr.push(sum);
+    sum = 0;
+  }
+  return resultArr;
 };
 /* ------------------------------------------------------------------------------------------------
 TESTS
